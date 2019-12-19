@@ -3,7 +3,7 @@ const db = require('../data/dbConfig');
 module.exports={
     getUsers,
     getUserById,
-    getUserBy,
+    getUsersBy,
     registerUser,
 }
 
@@ -18,7 +18,7 @@ function getUserById(id) {
         .first();
 }
 
-function getUserBy(filter) {
+function getUsersBy(filter) {
     return db("users")
         .select("id", "username", "password", "department") // make sure to return the password
         .where(filter);

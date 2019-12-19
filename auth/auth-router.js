@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     let { username, password } = req.body;
 
-    Users.getUserBy({ username })
+    Users.getUsersBy({ username })
         .first()
         .then(user => {
         if (user && bcrypt.compareSync(password, user.password)) {
@@ -45,7 +45,7 @@ router.post('/login', (req, res) => {
 function signToken(user) {
     const payload = {
         username: user.username,
-        role: user.department, // this will come from the database
+        department: user.department, // this will come from the database
     };
 
     const secret = process.env.JWT_SECRET || 'Super duper secret'
